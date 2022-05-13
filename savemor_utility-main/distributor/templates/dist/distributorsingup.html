@@ -1,0 +1,44 @@
+{% extends "cust/base.html" %}
+{% load static %}
+
+
+{% block css %} {{block.super}}
+<link rel="stylesheet" href="{% static 'cust/css/apply-fd.css' %}" />
+{% endblock css %}
+{% block content %}
+
+
+
+<div class="container-sm ">
+    <!-- <img src="{% static 'cust/images/fd1.jpg' %}" class="img-fluid my-4  " alt="..."> -->
+
+<!-- <h2 class="text-center  mt-3">
+    distributor singup
+</h2> -->
+<div class="alert alert-danger text-center col-11 mx-auto mt-3">
+    Create Your Reffer User here
+</div>
+
+<div class="form-fd my-5 " >
+    <form action="" name="form" method="POST" novalidate>
+    {% for field in  form %}
+    {% csrf_token %}
+    <div class="mb-3 row">
+      <div class="form-label"> {{field.label_tag}}</div>
+      
+       {{field}}
+       {{field.errors}}
+      </div>
+    {% endfor %}
+ 
+          <p class="text-center"><input type="submit" class="  btn btn-dark text-info "  value="proceed"></p>
+        
+     
+    </form>
+  </div>
+
+
+</div>
+
+
+{% endblock content %}

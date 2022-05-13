@@ -1,0 +1,59 @@
+{% extends "cust/base.html" %}
+
+{% block content %}
+
+{% if messages %}
+{% for message in messages  %}
+
+<div {% if message.tags %}
+class="alert  text-center alert-{{message.tags}}"
+{% endif %}  >{{message}}</div>
+{% endfor %}
+  
+{% endif %}
+
+
+
+<div class="alert alert-info">
+  <h1 class="text-center">
+    All Fixed Deposit Forms
+  </h1>
+</div>
+<div class=" overflow-auto m-5 ">
+  <table   class="table  overflow-scroll table-info table-striped  ">
+      <thead>
+        <tr>
+        
+          <th scope="col">NAME</th>
+          <th scope="col">EMAIL</th>
+     
+          <th scope="col">MOBILE</th>
+          <th scope="col">AMOUNT</th>
+          <th scope="col">ORDER_ID</th>
+          
+        
+          <th scope="col">P-STATUS</th>
+          <th scope="col">DATE_CREATED</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for field in form  %}
+        <tr>
+          
+          <th >{{field.fd_owner}}</th>
+          <td>{{field.email}}</td>
+         
+          <td>{{field.mobile}}</td>
+          <td>{{field.amount}}</td>
+          <td>{{field.order_id}}</td>
+         
+         
+          <td>{{field.payment_status}}</td>
+          <td>{{field.date_created}}</td>
+        </tr>
+        {% endfor %}
+        
+      </tbody>
+    </table>
+</div>
+{% endblock content %}

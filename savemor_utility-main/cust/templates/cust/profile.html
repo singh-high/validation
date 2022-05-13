@@ -1,0 +1,57 @@
+
+{% extends "cust/base.html" %}
+{% load static %}
+{% block content %}
+
+{% if messages %}
+{% for message in messages  %}
+
+<div {% if message.tags %}
+class="alert  text-center alert-{{message.tags}}"
+{% endif %}  >{{message}}</div>
+{% endfor %}
+  
+{% endif %}
+
+
+<h1 class="m-4 text-center  text-primary">MULTI UTILITY SERVICES</h1>
+{% include "cust/carousel.html" %}
+<p class="m-4 text-muted ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis quibusdam eum quos eius. Delectus minus ipsum temporibus voluptatum. Aliquid ducimus impedit tempora et corporis maxime modi fugit amet earum quae!</p>
+
+{% if request.user.kyc_status == False and request.user.kyc_pending == False %}
+<a href="{% url 'kyc' %}" class="text-decoration-none"><div class=" col-11 mx-auto  alert alert-danger">
+  <h5 class="text-center">Complete Your KYC to unlock Premium feactures </h5>
+</div></a>
+{% endif %}
+
+{% if request.user.certificate_status == 'Premium' %}
+{% if 'cust.view_userfunds' in perms %}
+<div class="container text-center my-4">
+  <a class="btn text-center border border-warning " href="{% url  'generate_certificate'  %}" >View Certificate</a>
+
+</div>
+{% else %}
+<div class="container  rounded  text-center p-3">
+  <h2 class="text-warning">Certificate Status Pending</h2>
+  <p class="text-muted">This will update within few hours</p>
+
+</div>
+
+{% endif %}
+{% endif %}
+
+
+ <div class="r_grid   ">
+   <a   class=" r_box text-decoration-none rounded"  href="{% url 'applyFd' %}">
+     <h3>Invest For High Returns</h3>
+   </a>
+   <a   class=" r_box text-decoration-none text-info  rounded"  href="{% url 'mrecharge' %}">
+     <h3>Mobile Recharge</h3>
+   </a>
+   <a   class=" r_box text-decoration-none text-success rounded"  href="{% url 'dthrecharge' %}">
+     <h3>DTH Recharge</h3>
+   </a>
+
+ 
+ </div>
+{% endblock content %}

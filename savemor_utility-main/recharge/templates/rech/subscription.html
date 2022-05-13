@@ -1,0 +1,86 @@
+
+{% extends "cust/base.html" %}
+{% load static %}
+
+
+
+{% block css %}{{block.super}}
+  <link rel="stylesheet" href="{% static 'rech/css/subscription.css' %}">
+{% endblock css %}
+{% block content %}
+
+{% if messages %}
+{% for message in messages  %}
+
+<div {% if message.tags %}
+class="alert  text-center alert-{{message.tags}}"
+{% endif %}  >{{message}}</div>
+{% endfor %}
+  
+{% endif %}
+
+
+
+
+
+
+
+
+<div class="d-flex  mt-5 justify-content-center">
+    <div class="grid-card w-75">
+
+       
+       
+        <div class=" off rounded colum3 ">
+            <h4 class="text-center text-white mt-4">LIFE TIME</h4>
+            <h4 class="text-center text-white mt-4">SUBSCTIPTION</h4>
+            <hr class="mt-4 bg-light w-75 mx-auto " style="height:7px;" >
+            <h4 class="text-center text-white " style="text-decoration: line-through;">₹ 2400</h4>
+            <h4 class="text-center text-white " >Upto 70% Discount</h4>
+            <h4 class="text-center text-white ">ONLY ₹ 1000</h4>
+            <a type="button" id="btn3"  class="w-100 mb-3  text-light text-center text-decoration-none">
+               Get benifits
+
+            </a>
+            <form action="" method="POST" id="subscribe-form" > {% csrf_token %}
+                <input type="hidden" name="hidden" value="1000">
+                  <!-- <input type="submit"   id="show3"   style="background-color: #a358d5;" class="w-100 submit  btn mb-3 link text-light text-center text-decoration-none"    value="Use Wallet To Pay"> -->
+                  <button type="button"   id="show3"   class="w-100 submit  btn mb-3 link text-light text-center text-decoration-none"   style="background-color: #a358d5;""  data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    Use Wallet To Pay
+                  </button>
+
+            </form>
+        </div>
+        <p class="text-center font-weight-bold">Benifits of paying for premium subscribtion</p>
+      <p>Pay one time user life time.Premium User will get upto 35% discount on registered mobile number recharge and this offer also avaliable on Electricity bill</p>
+        
+       
+    </div>
+</div>
+
+
+
+
+  <!-- dialogue pin -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Enter your Secret Code</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <input type="password"   name="pin" form="subscribe-form"   class="form-control my-3"  placeholder="Enter your pin" id="pin"   maxlength="4" pattern="[0-9]{4}">
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <input type="submit"  form="subscribe-form"  class="btn btn-info" value="Proceed To pay" />
+                    
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+{% endblock content %}

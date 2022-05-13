@@ -1,0 +1,75 @@
+{% extends "cust/base.html" %} 
+{% load static %}
+{% block content %}
+ {% if messages %} 
+ {% for message in messages %}
+
+<div
+  {%  if message.tags  %}
+  class="alert  text-center alert-{{message.tags}}"
+  {%  endif  %}
+>
+  {{message}}
+</div>
+{% endfor %} {% endif %}
+
+
+
+
+
+
+
+
+
+
+
+<div class="form-fd my-5 w-75 mx-5 " >
+    <form action="" name="form" id="pin-form" method="POST" novalidate>
+    {% for field in  form %}
+    {% csrf_token %}
+    <div class="mb-3 row">
+      <div class="form-label"> {{field.label_tag}}</div>
+      
+      {{field}}
+      {{field.errors}}
+    </div>
+    {% endfor %}
+    <p id="usernam" class=" text-success text-center"></p>
+    <p  id="mobile" class="text-success  text-center"></p>
+    <p class="text-center">
+        <input type="button" id="sendMoney" class="btn btn-danger" value="Find User" /></p>
+        
+        
+        
+        <p class="text-center">
+          <button type="button" class="btn " id="submit" style=" background: radial-gradient(#60efbc, #58d5c9); display: none;"  data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Proceed To Transfer
+          </button></p>
+          
+    </form>
+  </div>
+
+
+  <!-- pin dialogue -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Enter your Secret Code</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <input type="password"   name="pin" form="pin-form"   class="form-control my-3"  placeholder="Enter your pin" id="pin"   maxlength="4" pattern="[0-9]{4}">
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <input type="submit"  form="pin-form"  class="btn btn-info" value="Send Money" />
+                    
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock content %} 
+{% block js %} 
+{% include "dist/ajax.html" %} 
+{% endblock js %}

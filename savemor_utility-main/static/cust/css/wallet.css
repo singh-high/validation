@@ -1,0 +1,31 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.wallet{
+    background-color: rgb(235, 235, 235);
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.tran{
+    width: 90%;
+    margin:0 auto;
+     
+    box-shadow: 1.5px 1.5px 5px rgb(235, 235, 235);
+    border-top: 5px solid #60efbc ;
+   
+    
+}
+
+.flex{
+    display: flex;
+   justify-content: space-between;
+   padding:0  7px ;
+}
+
+
+

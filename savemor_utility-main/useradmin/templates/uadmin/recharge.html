@@ -1,0 +1,63 @@
+{% extends "cust/base.html" %}
+
+{% block content %}
+
+
+
+{% if messages %}
+{% for message in messages  %}
+
+<div {% if message.tags %}
+class="alert  text-center alert-{{message.tags}}"
+{% endif %}  >{{message}}</div>
+{% endfor %}
+  
+{% endif %}
+
+<div class="alert alert-info">
+  <h1 class="text-center">
+    Pending Recharges
+  </h1>
+</div>
+<div class=" overflow-auto m-5 ">
+  <table   class="table  overflow-scroll table-info table-striped  ">
+      <thead>
+        <tr>
+        
+          <th scope="col">Mobile </th>
+          <th scope="col">Operator</th>
+          <th scope="col">D2h customerid </th>
+          <th scope="col">D2h operator </th>
+     
+          <th scope="col">Circle</th>
+          <th scope="col">AMOUNT</th>
+          <th scope="col">Status</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        {% for field in form  %}
+        <tr>
+          
+          <th >{{field.mobile}}</th>
+          <th > {{field.customer_id}}
+          </th>
+          <td>{{field.mobile_operator}}</td>
+          <td> {{field.dish_operator}}
+          </td>
+         
+          <td>{{field.circle}}</td>
+          <td>{{field.amount}}</td>
+          <td><a href="{% url 'recharge_done' field.id %}">
+            <input type="submit" class="btn-sm btn-light " value="Done">
+          </a>
+            </td>
+         
+         
+        </tr>
+        {% endfor %}
+        
+      </tbody>
+    </table>
+</div>
+{% endblock content %}

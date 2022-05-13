@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'cust/css/bootstrap.css' %}" />
+    <link rel="stylesheet" href="{% static 'cust/css/style.css' %}" />
+    <title>Savemor</title>
+    <style>
+      .errorlist{
+       color: red;
+      }
+    </style>
+  </head>
+  <body class="form-auth">
+
+<div class="l-container my-5" > 
+
+ 
+
+
+      <form class="l-form rounded  py-5" action="" method="POST" novalidate>
+        {{form.non_field_errors}}
+
+        <div class="d-flex justify-content-center"> <img src="{% static 'cust/images/savemor_logo2.png' %}" class=" mb-3"  style="width: 280px;  " alt=""></div>
+        <p class="error text-danger " ></p>
+        {%csrf_token %} 
+        
+        
+        {% for field in  form %}
+        <div class="mb-3 row">
+         
+          <div class="col-11 mx-auto">
+           {{field}}
+           <span class="errorlist">{{field.errors|striptags}}</span>
+          </div>
+        </div>
+        {% endfor %}
+     <div class="l-btn"> <input type="submit" class=" my-1 text-light btn  btn-info  " id="submit"  value="Submit">
+     </div>
+     <div class="l-btn mt-3"><a class="link text-muted text-decoration-none" href="{% url 'userlogin'%}">Already have an account?</a> 
+     </div>
+        </form>
+    </div>
+    <script src="{% static 'cust/js/jquery.js' %}"></script>
+
+    <script>
+
+      // $(document).ready(function(){
+
+      //     let mobile = true;
+      //     let username = true;
+      //     let password = true;
+
+      //     $('#id_mobile').keyup(function(){
+
+      //       let mobile_data = $('#id_mobile').val() 
+
+      //       if(mobile_data.length < 10){
+      //         $('.error').show()
+      //         $('.error').html('Please enter more number')
+      //       }else{
+      //         $('.error').hide()
+      //       }
+
+
+
+
+
+      //       $('#submit').click(function(){
+      //         return true;
+      //       })
+      //     });
+      // });
+    </script>
+  </body>

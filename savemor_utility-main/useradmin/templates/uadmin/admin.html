@@ -1,0 +1,81 @@
+{% extends "cust/base.html" %}
+{% block content %}
+
+{% if messages %}
+{% for message in messages  %}
+
+<div {% if message.tags %}
+class="alert  text-center alert-{{message.tags}}"
+{% endif %}  >{{message}}</div>
+{% endfor %}
+  
+{% endif %}
+
+
+
+<div class=" admin-box m-4">
+   <a  id="" class="text-decoration-none">
+    <div class=" border border-info bg-light admin-1">
+      <h1 class="text-muted">USER</h1>
+      <p class="text-muted">COUNT</p>
+      <h1 class="text-muted">{{data}}</h1>
+    </div>
+   </a>
+    <a id="" class="text-decoration-none">
+      <div class=" border border-success bg-light admin-2">
+        <h1 class="text-muted">FIXED</h1>
+        <p class="text-muted">GRAND TOTAL</p>
+        <h1 class="text-muted">{{grand_total}}</h1>
+      </div>
+    </a>
+    <a id="admin1" class="text-decoration-none">
+      <div class="border border-dark  bg-dark admin-3">
+        <h1 class="text-muted"> PENDING</h1>
+        <p class="text-muted">CERTIFICATE</p>
+        <h1 class="text-muted">{{pdata}}</h1>
+      </div>
+    </a>
+    <a  class="text-decoration-none">
+      <div class=" border border-warning admin-4  bg-light">
+        <h1 class="text-muted">FIXED FUND</h1>
+        <p class="text-muted">COUNT</p>
+        <h1 class="text-muted">{{paid}}</h1>
+       
+      </div>
+    </a>
+    <a id="admin2" class="text-decoration-none mt-3">
+      <div class=" border border-dark admin-4  bg-dark">
+        <h1 class="text-muted">KYC</h1>
+        <p class="text-muted">PENDING</p>
+        <h1 class="text-muted">{{kyc}}</h1>
+       
+      </div>
+    </a>
+    <a id="admin2" class="text-decoration-none mt-3">
+      <div class=" border border-dark admin-4 bg-dark">
+        <h1 class="text-muted">WITHDRAW</h1>
+        <p class="text-muted">APPLY</p>
+        <h1 class="text-muted">{{withdraw}}</h1>
+       
+      </div>
+    </a>
+    <a id="admin2" class="text-decoration-none mt-3">
+      <div class=" border border-primary admin-4  bg-light">
+        <h1 class="text-muted">WALLET</h1>
+        <p class="text-muted">GRAND TOTAL</p>
+        <h1 class="text-muted">{{wallet_total}}</h1>
+       
+      </div>
+    </a>
+    <a id="admin2" class="text-decoration-none mt-3">
+      <div class=" border border-dark admin-4  bg-dark">
+        <h1 class="text-muted">RECHARGE</h1>
+        <p class="text-muted">APPLY</p>
+        <h1 class="text-muted">{{recharge}}</h1>
+       
+      </div>
+    </a>
+
+  </div>
+
+{% endblock content %}

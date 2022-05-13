@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  {% block css %}
+      
+  <link rel="stylesheet" href="{% static 'cust/css/bootstrap.css' %}" />
+  <link rel="stylesheet" href="{% static 'cust/css/style.css' %}" />
+  
+  
+  {% endblock css %}
+    <title>{% block title %}
+      Savemor
+    {% endblock title %}</title>
+  </head>
+  <body>
+    <header>
+      <nav class="top bg-theme">
+
+        <ul class="nav p-2">
+          <li class="nav-item ">
+            <a
+            class=" side-bar d-flex align-items-center  "
+  
+            data-bs-toggle="offcanvas"
+            href="#offcanvasExample"
+            role="button"
+            aria-controls="offcanvasExample">
+            <img src="{% static 'cust/images/savemor_sidebar.png' %}" class="mx-2  side-bar "  style="width: 40px;  " alt="">
+          
+          </a>
+          </li>
+
+
+
+          <li class="nav-item  h-100">
+            <h4 class="my-auto" >
+
+              <img src="{% static 'cust/images/savemor_logo1.png' %}" class="mx-2 logo-full"  style="width: 180px; position:absolute; " alt="">
+            </h4>
+          </li>
+        </ul>
+          
+
+
+ 
+
+        <ul class="nav p-2">
+         
+          <li class="d-flex align-items-center ">
+            <a class="nav-link  text-light  " href="{% url 'editprofile' %}"><b class="text-light" >{{request.user.username}}</b></a>
+          </li>
+          <li class="d-flex align-items-center ">
+            
+            <a href="{% url 'editprofile' %}"><img src="{{request.user.profile_pic.url}}" style="width: 40px;height: 40px; border-radius: 50%;" class="mx-3" alt="" >
+           
+            </a>
+          </li>
+        </ul>  
+      </nav>
+    </header>
+
+    <div
+      class="offcanvas bg-panel offcanvas-start"
+      tabindex="-1"
+      id="offcanvasExample"
+      aria-labelledby="offcanvasExampleLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title  mx-4   text-light" id="offcanvasExampleLabel"><img src="{% static 'cust/images/savemor_sidebar2.png' %}" class="mx-2 "  style="width: 150px;" alt=""></h5>
+        <button
+          type="button"
+          class="btn-close text-reset"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
+      </div>
+
+      <div class="leftbar">
+        <ul>
+          
+            {% if request.user.is_superuser == True %}
+            <li class="">
+             <a href="{% url  'admindisplay'%}">Home</a>
+           </li>
+           <li class="">
+             <a href="{% url  'allusers'%}">Users</a>
+           </li>
+           <li class="">
+             <a href="{% url 'recharge_admin'  %}">Recharges</a>
+           </li>
+           <li class="">
+             <a href="{% url  'allforms'%}">Forms</a>
+           </li>
+            {% endif %}
+             <li class="">
+               <a href="{% url  'profile'%}">Dashboard</a>
+             </li>
+             <li><a href="{% url  'editprofile'%}">Profile</a></li>
+             <li><a href="{% url  'userfdform'%}">Funds</a></li>
+             <li><a href="{% url  'wallet'%}">Wallet</a></li>
+             {% if request.user.distibutor_status  %}
+             <li><a href="{% url  'dist'%}">User create</a></li>
+             <li><a href="{% url  'dist_cust'%}">List User</a></li>
+             <li><a href="{% url  'send_money'%}">Send Money</a></li>
+               
+             {% endif %}
+             <li><a href="{% url  'setting'%}">More</a></li>
+             <li><a href="{% url 'userlogout' %}">Logout</a></li>
+          
+        </ul>
+      </div>
+    </div>
+
+    <!-- body part -->
+
+    <div class="content">
+      <div class="content1 bg-panel">
+        <div class="leftbar">
+          <ul>
+          
+            {% if request.user.is_superuser == True %}
+            <li class="">
+             <a href="{% url  'admindisplay'%}">Home</a>
+           </li>
+           <li class="">
+             <a href="{% url  'allusers'%}">Users</a>
+           </li>
+           <li class="">
+            <a href="{% url 'recharge_admin'   %}">Recharges</a>
+          </li>
+           <li class="">
+             <a href="{% url  'allforms'%}">Forms</a>
+           </li>
+            {% endif %}
+             <li class="">
+               <a href="{% url  'profile'%}">Dashboard</a>
+             </li>
+             <li><a href="{% url  'editprofile'%}">Profile</a></li>
+             <li><a href="{% url  'userfdform'%}">Funds</a></li>
+             <li><a href="{% url  'wallet'%}">Wallet</a></li>
+             <li><a href="{% url  'setting'%}">More</a></li>
+             {% if request.user.distibutor_status  %}
+             <li><a href="{% url  'dist'%}">User create</a></li>
+             <li><a href="{% url  'dist_cust'%}">List User</a></li>
+             <li><a href="{% url  'send_money'%}">Send Money</a></li>
+               
+             {% endif %}
+             <li><a href="{% url 'userlogout' %}">Logout</a></li>
+          
+        </ul>
+        </div>
+      </div>
+      <div class="content2">
+        
+
+{% block content %} 
+
+{% endblock content %}
+</div>
+
+</div>
+<footer style="background-color: rgb(248, 248, 248);" class=" text-center   text-lg-start">
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    © 2022 Savemor 
+    <a class="text-dark text-decoration-none " href=""> All Rights Reserved </a>
+  </div>
+</footer>
+
+    <script src="{% static 'cust/js/bootstrap.js' %}"></script>
+    <script src="{% static 'cust/js/popper.js' %}"></script>
+    <script src="{% static 'cust/js/jquery.js' %}"></script>
+    <script src="{% static 'cust/js/custom_jquery.js' %}"></script>
+
+  {% block js %}
+    
+  {% endblock js %}
+  </body>
+</html>

@@ -1,0 +1,235 @@
+@import url('https://fonts.googleapis.com/css2?family=Square+Peg&display=swap');
+
+
+*{
+    margin: 0;
+    padding:0;
+}
+
+.top{
+    display:flex;
+    justify-content :space-between;
+}
+
+.bg-theme{
+    background:linear-gradient(to right,#1fe4f5,#60efbc) ;
+}
+.bg-panel{
+    background:linear-gradient(to bottom,#1fe4f5,#76b2fe) ;
+}
+.bg-btn{
+    background-color: rgba(0, 59, 148, 0.726);
+}
+.al-btn{
+    background-color: aqua;
+}
+
+.color{
+    color: rgba(0, 59, 148, 0.726);
+}
+
+.nav-hover:hover{
+outline: 1px solid aqua;
+}
+
+
+/* --------------leftbar-------------- */
+
+.leftbar{
+  height: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.leftbar ul li{
+ list-style-type: none;
+border-right: 5px solid #8d59c2;
+ margin-top: 10px;
+ padding: 10px 50px;
+ transition: 0.5s;
+}
+
+.leftbar ul li:hover{
+background-color: #f588d8;
+overflow: hidden;
+
+}
+
+.leftbar ul li:hover a{
+
+    color: rgb(255, 255, 255);
+}
+.leftbar ul li a{
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 500;
+    color:rgb(255, 255, 255);
+    
+}
+
+/* --------------------sidebar------------- */
+
+
+
+.content{
+    display: grid;
+    grid-template-columns: 0.2fr 1fr;
+}
+.side-bar{
+    display: none;
+}
+
+.logo-full{
+    display: block;
+}
+
+@media only screen and (max-width:900px){
+    .content1{
+        display: none;
+    }
+.logo-full{
+    display: none;
+}
+
+    .content{
+        display: block;
+    }
+    .side-bar{
+        
+        display: block;
+    }
+}
+
+/* --------------customer profile------------- */
+
+.r_box{
+ margin: 0.7rem auto;
+    padding: 2rem 0;
+    background-color: rgb(34, 40, 43);   
+    text-align: center;
+   width: 90%   ;
+
+}
+
+.r_grid{
+display: grid;
+grid-template-columns: 1fr;
+justify-self: center;
+
+}
+
+
+/* ----------------admin panel------------ */
+
+.admin-box{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    column-gap: 10px;
+    height: auto;
+}
+.admin-1{
+    border-radius: 15px;
+    padding: 30px 0;
+    text-align: center;
+    
+}
+
+.admin-box div h1{
+    color: rgb(54, 54, 54) ;
+}
+
+.admin-2{
+ 
+    border-radius: 15px;
+    text-align: center;
+    padding: 30px 0;
+}
+.admin-3{
+    border-radius: 15px;
+    padding: 30px 0;
+  
+    text-align: center;
+}
+.admin-4{
+    border-radius: 15px;
+    padding: 30px 0;
+    text-align: center;
+   
+}
+
+
+/* ----------------------edit profile------------- */
+
+
+.edit-grid{
+    display: flex;
+    justify-content: center;
+   
+}
+
+
+
+/* ----------------------contact us ------------- */
+
+.contact-form{
+max-width: 800px;
+border: none;
+outline:none;
+width: 100%;
+}
+
+.contact-form:focus{
+border-bottom: 2px solid rgb(197, 197, 197);
+}
+
+/* ----------------------aboutus------------- */
+.about-img {
+max-width: 700px;
+width: 100%;
+
+}
+
+/* ----------------------login form------------- */
+
+.form-auth{
+    background:linear-gradient(to bottom,rgba(0, 59, 148, 0.726),aqua) ;
+}
+
+
+.l-container{
+ 
+height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.l-form{
+background-color: white;
+
+border-right: 10px solid rgba(0, 59, 148, 0.726);
+padding: 15px;
+}
+
+
+.l-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* ----------------------fd-data to user------------- */
+
+.fd-box{
+    position: relative;
+    padding: 1rem;
+    border-bottom: 5px solid rgb(16, 155, 127);
+    box-shadow: 2px 2px 5px rgb(209, 209, 209);
+}
+
+.amount{
+    font-weight: 500;
+    font-family:'Times New Roman', Times, serif ;
+}
+

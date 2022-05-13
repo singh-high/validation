@@ -1,0 +1,123 @@
+{% extends "cust/base.html" %}
+{% load static %}
+
+
+{% block css %} {{block.super}}
+<link rel="stylesheet" href="{% static 'cust/css/dashboard.css' %}" />
+{% endblock css %}
+{% block content %}
+
+
+{% if messages %}
+{% for message in messages  %}
+
+<div {% if message.tags %}
+class="alert    text-center alert-{{message.tags}}"
+{% endif %}  >{{message}}</div>
+{% endfor %}
+  
+{% endif %}
+
+
+
+
+
+
+
+
+
+<div class="main-container ">
+    <div class="heading">
+      <h1 class="heading__title text-info my-4">MULTI UTILITIES SERVICES</h1>
+
+    </div>
+
+    <div class="col-11 mx-auto banner rounded justify-content-center bg-dark"  >
+      
+      {% if not request.user.Premium_user %}
+      <h4 class=" text-center text-info pt-4"  >Subscribe Now And Get</h4> 
+      <p  class=" text-center" style="color: #ffffff ;">Upto 35% cashback on Recharge</p>
+      <p  class=" text-center" style="color: #ffffff ;">Upto 30% cashback on Electricity</p>
+      <p  class=" text-center" style="color: #ffffff ;">Only ₹1000 Life Time</p>
+      <p  class=" text-center pb-4" style="color: #391b4d ;"><a class="text-decoration-none btn text-light " style="background-color: #a358d5;" href="{% url 'subscription' %}">Subscribe now</a></p>
+      {% else %}
+      <h4 class=" text-center text-info pt-4">Congratulations You Are A</h4> 
+      <h4 class=" text-center text-info ">Premium User Now</h4> 
+      <p  class=" text-center" style="color: #ffffff ;">Enjoy our service</p>
+      <p  class=" text-center" style="color: #ffffff ;">For Life Time</p>
+      <p  class=" text-center" style="color: #ffffff ;"></p>
+      <p  class=" text-center pb-4" style="color: #391b4d ;"></p>
+      {% endif %}
+      </div>
+
+
+
+
+    <div class="cards">
+
+        {% if request.user.kyc_status == False and request.user.kyc_pending == False %}
+      <div class="card card-1">
+        <h2 class="card__title text-center">Complete Your KYC to Unlock Premium Features</h2>
+        <p class="card__apply">
+          <a class="card__link" href="{% url 'kyc' %}">Process <i class="fas fa-arrow-right"></i></a>
+        </p>
+      </div>
+      {% endif %}
+
+
+      
+      
+
+
+
+
+
+      <div class="card card-3">
+        
+        <h2 class="card__title text-center">For High Returns</h2>
+        <p class="card__apply">
+          <a class="card__link" href="{% url 'applyFd' %}">Apply Now <i class="fas fa-arrow-right"></i></a>
+        </p>
+      </div>
+
+
+
+      <div class="card card-4">
+        
+       
+        <h2 class="card__title text-center">Mobile Recharge</h2>
+       
+        <p class="card__apply">
+          <a class="card__link" href="{% url 'mrecharge' %}">Recharge<i class="fas fa-arrow-right"></i></a>
+        </p>
+      </div>
+
+
+
+      <div class="card card-5">
+        <div class="card__icon"><i class="fas fa-bolt"></i></div>
+        <p class="card__exit"><i class="fas fa-times"></i></p>
+        <h2 class="card__title text-center">DTH Recharge</h2>
+        <p class="card__apply">
+          <a class="card__link" href="{% url 'dthrecharge' %}">Recharge<i class="fas fa-arrow-right"></i></a>
+        </p>
+      </div>
+
+
+      
+      <div class="card card-1">
+        <div class="card__icon"><i class="fas fa-bolt"></i></div>
+        <p class="card__exit"><i class="fas fa-times"></i></p>
+        <h2 class="card__title text-center">Electricity Bill</h2>
+        <p class="card__apply">
+          <a class="card__link" href="{% url 'electricityrecharge' %}">Pay<i class="bi bi-arrow-right"></i></a>
+        </p>
+      </div>
+      
+
+    </div>
+</div>
+
+
+
+{% endblock content %}

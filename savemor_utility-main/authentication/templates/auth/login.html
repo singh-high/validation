@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'cust/css/bootstrap.css' %}" />
+    <link rel="stylesheet" href="{% static 'cust/css/style.css' %}" />
+    <title>Savemor</title>
+  </head>
+
+{% block style %}
+  
+{% endblock style %}
+
+
+<body class="form-auth">
+
+{% block content %}
+<div class="l-container" > 
+
+
+
+
+
+  <form class="l-form py-5 rounded" action="" method="POST" novalidate>
+    
+    <div class="d-flex justify-content-center"> <img src="{% static 'cust/images/savemor_logo2.png' %}" class=" mb-3"  style="width: 280px;  " alt=""></div>
+    {{form.non_field_errors}}
+    {% for field in  form %} {%csrf_token %}
+    <div class="mb-3 row">
+      
+      <div class="col-10 mx-auto">
+       {{field}}
+       {{field.errors}}
+       <!-- {% for field in field.errors  %}
+         {{field}}
+       {% endfor %} -->
+      </div>
+    </div>
+    {% endfor %}
+ <div class="l-btn"> <input type="submit" class=" my-1 text-light btn  btn-info  "  value="Submit">
+ </div>
+
+ <div class="l-btn mt-3">  <a class="link text-muted text-decoration-none" href="{% url 'usersingup'%}"><b>New user?</b> Singup here</a> 
+ </div>
+ <div class="l-btn mt-3"><a class="link text-muted text-decoration-none" href="{% url 'reset_password'%}">Forget Password ?</a> 
+ </div>
+    </form>
+</div>
+
+
+{% endblock content %}
+
+
+      <script src="{% static 'cust/js/bootstrap.js' %}"></script>
+    <script src="{% static 'cust/js/popper.js' %}"></script>
+    <script src="{% static 'cust/js/jquery.js' %}"></script>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+
+{% extends "cust/base.html" %}
+{% load static %}
+{% block content %}
+
+
+<div class="container alert mb-5 alert-info">
+    <h2 class="text-center ">Enter The Amount For Withdraw</h2>
+  </div>
+  
+  
+  <div class=" form-fd m-5 ">
+    <form action="" method="POST"  novalidate>
+    {% for field in  form %} {%csrf_token %}
+    <div class="mb-3 row">
+      <div class="form-label"> {{field.label_tag}}</div>
+      
+       {{field}}
+       {{field.errors}}
+      </div>
+      {% endfor %}
+   
+    
+  
+  <div class="d-flex justify-content-center">
+    <input type="submit" class=" my-1 text-info btn  btn-dark "  value="Withdwaw">
+    </div> 
+    </form>
+  </div>
+     {% endblock content %}

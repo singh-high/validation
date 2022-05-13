@@ -1,0 +1,71 @@
+
+{% extends "cust/base.html" %}
+{% load static %}
+{% block content %}
+
+{% if messages %}
+{% for message in messages  %}
+
+<div {% if message.tags %}
+class="alert  text-center alert-{{message.tags}}"
+{% endif %}  >{{message}}</div>
+{% endfor %}
+  
+{% endif %}
+
+
+<div class="col-10 mx-auto alert alert-info m-4 text-center"><B>D2H RECHARGE</B></div>
+
+
+
+<div class="m-5">
+  <form action="{% url 'success' %}" method="POST"  id="mobile-form" enctype="multipart/form-data"  novalidate>
+  {% for field in  form %} {% csrf_token %}
+  <div class="mb-3 row">
+    <div class="form-label"> 
+      {{field.label_tag}}
+      </div>
+
+   
+    
+     {{field}}
+     {{field.errors}}
+    </div>
+    {% endfor %}
+ 
+  
+
+<div class="d-flex justify-content-center">
+
+    <button type="button" class="btn " id="submit" style=" background: radial-gradient(#60efbc, #58d5c9); "  data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+      Continue To Pay
+    </button>
+
+
+
+  </div> 
+  </form>
+</div>
+
+
+
+
+<!-- dialogue pin -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Enter your Secret Code</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <input type="password"   name="pin" form="mobile-form"   class="form-control my-3"  placeholder="Enter your pin" id="pin"   maxlength="4" pattern="[0-9]{4}">
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <input type="submit"  form="mobile-form"  class="btn btn-info" value="Proceed To pay" />
+                  
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

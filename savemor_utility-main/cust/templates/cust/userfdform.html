@@ -1,0 +1,34 @@
+{% extends "cust/base.html" %}
+{% load static %}
+{% block content %}
+<div class="grey">
+{% if messages %}
+{% for message in messages  %}
+
+<div {% if message.tags %}
+class="alert    text-center alert-{{message.tags}}"
+{% endif %}  >{{message}}</div>
+{% endfor %}
+  
+{% endif %}
+  {% for field in data %}
+    
+
+  
+    <div class="d-flex justify-content-between fd-box m-4">
+    <div> <h4 class="text-muted px-3 ">{{field.fd_owner}}</h4>
+        <p  class="text-secondary px-3" >{{field.email}}</p>
+          
+ </div>   
+    
+   <div> <p  class="text-secondary " >{{field.date_created|date:"DATE_FORMAT"}}</p>
+         <p class="amount mx-5 text-success">₹ {{field.amount}}</p>
+         <p class="amount text-success"> </p>
+    </div></div>
+
+    
+  {% endfor %}
+
+
+</div>
+{% endblock content %}

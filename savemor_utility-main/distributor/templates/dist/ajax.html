@@ -1,0 +1,31 @@
+<script>
+  $("#sendMoney").click(function (e) {
+    let us = $("#user").val();
+    let mn = $("#money").val();
+
+    my_data  = {user:us,money:mn}
+    $.ajax({
+        url : "{% url 'fetch_data' %}",
+        method : 'POST',
+        dataType: 'json',
+        data : my_data,
+        success : function (data) {
+       
+        $('#usernam').html( data.username);
+        $('#mobile').html( data.mobile);
+        $('#mobile').html(data.status);
+       
+        if(data.status != 'User Not Exist'){
+          $('#submit').css('display','inline');
+          $('#sendMoney').css('display','none');
+
+        };
+        },
+    });
+    e.preventDefault();
+  });
+
+  
+
+ 
+</script>

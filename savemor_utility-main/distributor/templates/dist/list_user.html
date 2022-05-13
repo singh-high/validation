@@ -1,0 +1,43 @@
+{% extends "cust/base.html" %}
+
+{% block content %}
+
+{% if messages %}
+{% for message in messages  %}
+
+<div {% if message.tags %}
+class="alert  text-center alert-{{message.tags}}"
+{% endif %}  >{{message}}</div>
+{% endfor %}
+  
+{% endif %}
+
+
+
+<div class="m-5 overflow-auto">
+  <table class="table  table-info table-striped  ">
+      <thead>
+        <tr>
+        
+          <th scope="col">NAME</th>
+          <th scope="col">EMAIL</th>        
+          <th scope="col">AMOUNT</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for field in data  %}
+        <tr>
+         
+          <td>{{field.username}}</td>
+          <td>{{field.email}}</td>        
+          <td>{{field.wallet}}</td>
+          
+          
+        
+        </tr>
+        {% endfor %}
+        
+      </tbody>
+    </table>
+</div>
+{% endblock content %}

@@ -1,0 +1,149 @@
+
+{% extends "cust/base.html" %}
+{% load static %}
+
+
+{% block css %}
+{{block.super}}
+<link rel="stylesheet" href="{% static 'cust/css/wallet.css' %}" />
+{% endblock css %}
+{% block content %}
+  
+
+  {% if messages %}
+  {% for message in messages  %}
+  
+  <div {% if message.tags %}
+  class="alert  text-center alert-{{message.tags}}"
+  {% endif %}  >{{message}}</div>
+  {% endfor %}
+    
+  {% endif %}
+
+
+<div class=" col-11 my-3 mx-auto  rounded wallet" >
+    <h1 class="text-muted text-center">₹ {{balance|floatformat:'-2'}}</h1>
+  
+</div>
+
+<div class=" col-11 my-3 mx-auto  flex " >
+{% if payment %}
+  
+
+  <button class="btn btn-dark" style="box-shadow: 1px 1px 5px red;"  type="submit" id="rzp-button1">Proceed to pay</button>
+{% else %}
+    <button type="button" class="btn " style=" background: radial-gradient(#60efbc, #58d5c9);"  data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        Add Money
+      </button>
+      {% endif %}
+     
+
+    <a  class="btn btn-dark" href="#">Statement</a>
+
+</div>
+
+
+<div class=" col-11 my-3 mx-auto  rounded text-light " style=" background: radial-gradient(#60efbc, #58d5c9);" >
+   <h1  class="text-center py-2" > Transections</h1>
+</div>
+
+
+
+<div class=" col-11 my-3 mx-auto " >
+
+
+  {% for field in history  %}
+  <div class="tran my-3 rounded">
+    
+    <div class="flex ">
+      {% if field.payment_get_or_send == 'get' %}
+      <h3 class="  my-3 px-4 text-success">₹ {{field.amount}}</h3>
+      
+      
+      {% elif field.payment_get_or_send == 'send'  %}
+      <h3 class="  my-3 px-4 text-danger">₹ {{field.amount}}</h3>
+ 
+     
+      {% endif %}
+
+      {% if field.message != None %}
+      <p class=" text-muted mx-4 mt-3">{{field.message}}</p>
+      {% endif %}
+    </div>
+    <div class="flex">
+        <p class=" text-muted mx-4">{{field.order_id}}</p>
+        <p class="text-muted mx-2">{{field.date|date:'SHORT_DATE_FORMAT'}}</p>
+    </div>
+ 
+      
+
+  </div>
+  {% endfor %}
+</div>
+
+<!-- payment model -->
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Thanks for paying</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="modal-body">
+          {% for field in form  %}
+          <div class="mb-3">
+              {{field}}
+          </div>
+          {% endfor %}  
+          
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <input type="submit" class="btn btn-dark" value="submit">
+              
+              
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+
+{% if payment %}
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+var options = {
+    "key": "rzp_test_Vq2wtgCcPJuQaB", // Enter the Key ID generated from the Dashboard
+    "amount": "{{payment.amount}}", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "currency": "INR",
+    "name": "Acme Corp",
+    "description": "Test Transaction",
+    "image": "https://example.com/your_logo",
+    "order_id": "{{payment.id}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+    "callback_url": "http://127.0.0.1:8000/core/handelrequest/",
+    "prefill": {
+        "name": "lovepreet singh",
+        "email": "{{request.user}}",
+        "contact": "{{request.user.mobile}}"
+    },
+    "notes": {
+        "address": "nothing"
+    },
+    "theme": {
+        "color": "#3399cc"
+    }
+};
+var rzp1 = new Razorpay(options);
+
+document.getElementById('rzp-button1').onclick = function(e){
+    rzp1.open();
+    e.preventDefault();
+}
+</script>
+{% endif %}
+{% endblock content %}

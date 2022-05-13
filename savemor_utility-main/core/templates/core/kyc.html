@@ -1,0 +1,64 @@
+{% extends "cust/base.html" %}
+{% load static %}
+{% block content %}
+  
+
+
+
+{% if messages %}
+{% for message in messages  %}
+
+<div {% if message.tags %}
+class="alert  text-center alert-{{message.tags}}"
+{% endif %}  >{{message}}</div>
+{% endfor %}
+  
+{% endif %}
+
+{% if request.user.kyc_status   == False and request.user.kyc_pending  == False  %}
+<div class="container alert mb-5 alert-info">
+  <h2 class="text-center ">Fill all details as per your documents</h2>
+</div>
+
+
+<div class="m-5">
+  <form action="" method="POST" enctype="multipart/form-data" novalidate>
+    
+  {% for field in  form %} {%csrf_token %}
+  {{ form.non_field_errors}}
+  <div class="mb-3 row">
+    <div class="form-label"> {{field.label_tag}}</div>
+    
+     {{field}}
+     {{field.errors}}
+    </div>
+    {% endfor %}
+ 
+  
+
+<div class="d-flex justify-content-center">
+  <input type="submit" class=" my-1 text-info btn  btn-dark "  value="Submit">
+  </div> 
+  </form>
+</div>
+{% elif request.user.kyc_status   == False and request.user.kyc_pending   == True  %}
+
+<div class="alert my-4 alert-warning">
+  <h2 class="text-center">
+    Your kyc is  under review
+  </h2>
+  <h2 class="text-center">
+    We will update your status ASAP.
+  </h2>
+  </div>
+{% else %}
+
+<div class="alert my-4 alert-success">
+<h2 class="text-center">
+  Your Kyc Has Been Compleated
+</h2>
+</div>
+
+
+{% endif %}
+{% endblock content %}
